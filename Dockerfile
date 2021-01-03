@@ -21,7 +21,6 @@ RUN ./configure --with-features=huge  \
     --enable-cscope --prefix=/usr
 RUN make
 RUN DESTDIR=/vimbin make install
-# RUN make install
 
 FROM ubuntu AS vim-plugins
 COPY --from=compile-vim /vimbin/usr /usr
@@ -30,11 +29,8 @@ COPY vimrc /root/.vimrc
 RUN apt-get update && \
     apt-get install libsm6 libxt6 libxtst6 python3 python3-dev ruby-dev perl liblua50 git -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
-# RUN cd /vim && make install && cd / && rm -r /vim
 RUN vim -E -s -c "source /root/.vimrc" -c PluginInstall -c qa && \
     find /root/.vim -type d -name .git | xargs rm -rf
-
-CMD ["bash"]
 
 FROM ubuntu
 ENV TERM=xterm-256color
