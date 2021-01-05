@@ -1,27 +1,30 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
 set encoding=UTF-8
-call vundle#begin()
+set rtp+=/etc/vim
+call plug#begin("/etc/vim/plugged")
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'klen/python-mode'
-Plugin 'scrooloose/nerdtree'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'avsd/Conque-Shell'
-Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'mcepl/cucutags'
-Plugin 'mustache/vim-mustache-handlebars'
-"Plugin 'ternjs/tern_for_vim'
-Plugin 'ajh17/VimCompletesMe'
+Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'klen/python-mode'
+Plug 'scrooloose/nerdtree'
+Plug 'davidhalter/jedi-vim'
+Plug 'mattn/emmet-vim'
+Plug 'scrooloose/syntastic'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'mcepl/cucutags'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'universal-ctags/ctags'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
-call vundle#end()            " required
+call plug#end()            " required
 " End of Bundles <<<<
+
+let g:deoplete#enable_at_startup = 1
 
 filetype plugin indent on
 syntax on
@@ -29,11 +32,6 @@ set backspace=2
 set scrolloff=10
 "filetype plugin on
 "filetype indent on
-"let g:pydiction_location = '/home/david/.vim/pydiction-1.2/complete-dict'
-"let g:pydiction_menu_height = 20
-
-"WatchTheDocs
-au BufRead,BufNewFile *.watch set filetype=yaml
 
 "set smartindent
 set tabstop=4
@@ -48,16 +46,6 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType css setlocal shiftwidth=2 tabstop=2
 autocmd FileType scss setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
-
-
-" Rope
-let g:pymode_rope = 0
-"map <leader>j :RopeGotoDefinition<CR>
-
-" Additional paths for Buildout
-" let g:pymode_paths = ['/home/david/src/ebm/eggs', './develop_eggs']
-" let g:pymode_paths = ['/home/david/src/ebm/eggs/Django-1.4.1-py2.7.egg', './develop_eggs']
-" let g:pymode_paths = ['/home/david/src/chameleonpage/eggs/Django-1.4.1-py2.7.egg']
 
 " Shortcuts for Tabs
 map <C-F10> :tabp<CR>
@@ -76,7 +64,6 @@ map <A-up> :tabe
 map <A-down> :q<CR>
 map <Tab> :wincmd w<CR>
 
-
 " Disable folding
 let g:pymode_folding = 0
 
@@ -88,8 +75,8 @@ let g:syntastic_python_flake8_args='--ignore=E501,W504,E123'
 let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
 
 " Color column for Python
-let g:pymode_options_max_line_length = 110
-let g:pymode_options_colorcolumn = 110
+let g:pymode_options_max_line_length = 119
+let g:pymode_options_colorcolumn = 119
 
 " Python: Go to definition in tabs
 let g:jedi#use_tabs_not_buffers = 1
