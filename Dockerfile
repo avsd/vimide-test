@@ -41,9 +41,10 @@ ENV VIMINIT=/.vimrc
 COPY --from=compile-vim /vimbin/usr /usr
 COPY vimrc /.vimrc
 COPY --from=vim-plugins /etc/vim /etc/vim
+RUN ln -snf /usr/share/zoneinfo/UTC /etc/localtime
 RUN apt-get update && \
     apt-get install ctags libsm6 libxt6 libxtst6 \
-    python3 python3-dev python3-pip ruby-dev perl liblua50 git -y && \
+    python3 python3-dev python3-pip ruby-dev perl liblua50 nodejs git -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN pip3 install pynvim
 
